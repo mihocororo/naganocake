@@ -2,11 +2,11 @@
 
 class Admin::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-
+# before_action :configure_permitted_parameters, if: :devise_controller?
   # GET /resource/sign_in
-  # def new
+  def new
   #   super
-  # end
+  end
 
   # POST /resource/sign_in
   # def create
@@ -14,9 +14,9 @@ class Admin::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+  super
+  end
 
   # protected
 

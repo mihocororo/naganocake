@@ -1,2 +1,61 @@
 <h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ <div class="b-example-divider"></div>
+<head>
+  <header class="p-3 bg-danger text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/admin/items" class="nav-link px-2 text-white">商品一覧</a></li>
+          <li><a href="/admin/customers" class="nav-link px-2 text-white">会員一覧</a></li>
+          <li><a href="/admin" class="nav-link px-2 text-white">注文履歴一覧</a></li>
+          <li><a href="/admin/genres" class="nav-link px-2 text-white">ジャンル一覧</a></li>
+          <li><a href="/admin/sign_out" class="nav-link px-2 text-white">ログアウト</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        </form>
+
+      </div>
+    </div>
+  </header>
+  </head>
+  <body>
+
+  <h4>ジャンル一覧・追加</h4>
+    <%= form_for(@genre, url: admin_genres_path) do |f| %>
+<div class="field">
+    <%= f.label :ジャンル名 %><br />
+
+
+<%= f.text_field :name %>
+  </div>
+
+<div class="actions2">
+    <%= f.submit "新規登録" %>
+</div>
+  <% end %>
+  <tbody>
+
+<div class="col-md-8 offset-md-1">
+<table class="table">
+<% @genres.each do |genre| %>
+    <tr>
+
+      <td><%= genre.name %></td>
+      <td><%= link_to "編集する", edit_admin_genre_path(genre) ,class:"btn btn-outline-danger" %></td>
+
+    </tr>
+
+    </tbody>
+    </table>
+
+<% end %>
+</body>

@@ -1,79 +1,5 @@
 Rails.application.routes.draw do
-
-    get '/' => 'admin/homes#top'
-
-
-
-  namespace :admin do
-    get 'customers/index'
-  end
-
-  namespace :admin do
-    get 'customers/show'
-  end
-
-  namespace :admin do
-    get 'customers/edit'
-  end
-
-  namespace :admin do
-    get 'customers/update'
-  end
-
-  namespace :admin do
-    get 'order_items/update'
-  end
-
-  namespace :admin do
-    get 'orders/show'
-  end
-
-  namespace :admin do
-    get 'orders/update'
-  end
-
-  namespace :admin do
-    get 'genres/index'
-  end
-
-  namespace :admin do
-    get 'genres/create'
-  end
-
-  namespace :admin do
-    get 'genres/edit'
-  end
-
-  namespace :admin do
-    get 'genres/update'
-  end
-
-  namespace :admin do
-    get 'items/index'
-  end
-
-  namespace :admin do
-    get 'items/new'
-  end
-
-  namespace :admin do
-    get 'items/create'
-  end
-
-  namespace :admin do
-    get 'items/show'
-  end
-
-  namespace :admin do
-    get 'items/edit'
-  end
-
-  namespace :admin do
-    get 'items/update'
-  end
-
-
-
+# post '/admin/genres' => 'public/genres#create'
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -86,101 +12,52 @@ devise_for :customers,skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-  namespace :public do
-    get 'addresses/index'
+
+#管理者
+ namespace :admin do
+    root to: 'homes#top'
+    resources :items, except: [:destroy]
+    resources :customers, except: [:new, :create, :destroy]
+    resources :genres, except: [:show, :destroy, :new]
+    resources :orders, only: [:index, :show, :update] do
+     resources :order_details, only: [:index, :update]
+    end
   end
 
-  namespace :public do
-    get 'addresses/edit'
-  end
+#顧客
+    post '/admin/genres' => 'genres#create'
+    get 'admin/:id/edit' => 'admin#edit', as: 'edit_list'
+    get '/about' => 'public/homes#about', as: 'about'
+    get '/' => 'public/homes#top'
+    get '/items' => 'public/items#index'
+    get	'/customers/sign_up' => 'public/registrations#new'
+    resources :addresses, except: [:new, :show]
 
-  namespace :public do
-    get 'addresses/create'
-  end
+    resources :orders,only: [:create, :index, :show, :new] do
+      collection do
+        get 'complete'
+        post 'confirm'
+      end
+    end
 
-  namespace :public do
-    get 'addresses/destroy'
-  end
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
 
-  namespace :public do
-    get 'orders/new'
-  end
+    resources :items, only: [:index, :show]
+    # get	'/customers/sign_up' => 'public/registrations#new'
+    namespace :customers do
+      # root to: 'public/homes#top'
 
-  namespace :public do
-    get 'orders/confirm'
-  end
-
-  namespace :public do
-    get 'orders/complete'
-  end
-
-  namespace :public do
-    get 'orders/create'
-  end
-
-  namespace :public do
-    get 'orders/index'
-  end
-
-  namespace :public do
-    get 'orders/show'
-  end
-
-  namespace :public do
-    get 'cart_items/index'
-  end
-
-  namespace :public do
-    get 'cart_items/update'
-  end
-
-  namespace :public do
-    get 'cart_items/destroy'
-  end
-
-  namespace :public do
-    get 'cart_items/destroy_all'
-  end
-
-  namespace :public do
-    get 'cart_items/create'
-  end
-
-  namespace :public do
-    get 'sessions/new'
-  end
-
-  namespace :public do
-    get 'sessions/create'
-  end
-
-  namespace :public do
-    get 'sessions/destroy'
-  end
-
-  namespace :public do
-    get 'registrations/new'
-  end
-
-  namespace :public do
-    get 'registrations/create'
-  end
-
-  namespace :public do
-    get 'items/index'
-  end
-
-  namespace :public do
-    get 'items/show'
-  end
-
-  namespace :public do
-    get 'homes/top'
-  end
-
-  namespace :public do
-    get 'homes/about'
-  end
+      # get 'unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+      # patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
+      # resource :customers, only: [:show]
+      # put 'update' => 'customers#update'
+      # patch 'update' => 'customers#update'
+      # get 'edit' => 'customers#edit'
+    end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -20,7 +20,15 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.0]
       # t.datetime :last_sign_in_at
       # t.string   :current_sign_in_ip
       # t.string   :last_sign_in_ip
-
+      t.string :last_name
+      t.string :first_name
+      t.string :last_name_kana
+      t.string :first_name_kana
+      t.string :postal_code
+      t.string :address
+      t.string :phone_number
+      t.string :encrypted_password
+      t.boolean :is_deleted, default: false, null:false
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at

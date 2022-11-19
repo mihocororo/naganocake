@@ -1,29 +1,84 @@
-<h2>Sign up</h2>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ <div class="b-example-divider"></div>
+<head>
+  <header class="p-3 bg-danger text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/about" class="nav-link px-2 text-white">About</a></li>
+          <li><a href="/items" class="nav-link px-2 text-white">商品一覧</a></li>
+          <li><a href="sign_up" class="nav-link px-2 text-white">新規登録</a></li>
+          <li><a href="" class="nav-link px-2 text-white">ログイン</a></li>
+
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        </form>
+
+      </div>
+    </div>
+  </header>
+  </head>
+
+<h2>新規会員登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
+  <%= render "public/shared/error_messages", resource: resource %>
+
+<div class="field">
+    <%= f.label :名前 %>
+    <a>姓</a><%= f.email_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <a>名</a><%= f.email_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+<div class="field">
+    <%= f.label :フリガナ %>
+    <a>姓</a><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name" %>
+    <a>名</a><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+  </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.email_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :電話番号（ハイフンなし） %>
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :住所 %>
+    <%= f.text_field :address, autofocus: true, autocomplete: "address", :size=>"60" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :パスワード（確認用） %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
-
-<%= render "publics/shared/links" %>
+<h3>既に登録済みの方</h3>
+<a href="sign_in">こちら</a>  からログインしてください。
+<!--<%= render "public/shared/links" %>-->
