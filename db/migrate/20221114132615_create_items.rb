@@ -11,4 +11,4 @@ t.integer :image_id
       t.timestamps
     end
   end
-enda
+end
