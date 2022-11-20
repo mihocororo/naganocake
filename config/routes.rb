@@ -16,6 +16,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #管理者
  namespace :admin do
     root to: 'homes#top'
+    patch '/admin/genres/:id/edit' => 'genres#update', as: 'update_genre'
+    post '/admin/genres' => 'genres#create'
+    get '/admin/genres/:id/edit' => 'admin#edit', as: 'edit_list'
     resources :items, except: [:destroy]
     resources :customers, except: [:new, :create, :destroy]
     resources :genres, except: [:show, :destroy, :new]
@@ -25,8 +28,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   end
 
 #顧客
-    post '/admin/genres' => 'genres#create'
-    get 'admin/:id/edit' => 'admin#edit', as: 'edit_list'
+
     get '/about' => 'public/homes#about', as: 'about'
     get '/' => 'public/homes#top'
     get '/items' => 'public/items#index'

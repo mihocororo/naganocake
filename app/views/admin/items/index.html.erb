@@ -12,12 +12,13 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">商品一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">会員一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">注文履歴一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">ジャンル一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">ログアウト</a></li>
+          <li><a href="/admin/items" class="nav-link px-2 text-white">商品一覧</a></li>
+          <li><a href="/admin/customers" class="nav-link px-2 text-white">会員一覧</a></li>
+          <li><a href="/admin" class="nav-link px-2 text-white">注文履歴一覧</a></li>
+          <li><a href="/admin/genres" class="nav-link px-2 text-white">ジャンル一覧</a></li>
+          <li><a href="/admin/sign_out" class="nav-link px-2 text-white">ログアウト</a></li>
         </ul>
+
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
@@ -29,5 +30,34 @@
   </head>
   <body>
   <h4>商品一覧</h4>
+
+
+  <div class="col-md-8 offset-md-1">
+<table class="table">
+
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+<% @items.each do |item| %>
+      <td><%= item.id %></td>
+      <td><%= link_to item.name , admin_item_path(item) ,class:"btn btn-outline-danger" %></td>
+      <td><%= item.price %></td>
+      <td><%= item.name %></td>
+      <td><% if item.is_active== false %>販売中
+      <% else %>
+      販売停止中
+      <% end %>
+      </td>
+
+
+    </tr>
+    </div>
+    </tbody>
+    </table>
+
+<% end %>
 
   </body>

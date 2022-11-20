@@ -12,12 +12,13 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">商品一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">会員一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">注文履歴一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">ジャンル一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">ログアウト</a></li>
+          <li><a href="/admin/items" class="nav-link px-2 text-white">商品一覧</a></li>
+          <li><a href="/admin/customers" class="nav-link px-2 text-white">会員一覧</a></li>
+          <li><a href="/admin" class="nav-link px-2 text-white">注文履歴一覧</a></li>
+          <li><a href="/admin/genres" class="nav-link px-2 text-white">ジャンル一覧</a></li>
+          <li><a href="/admin/sign_out" class="nav-link px-2 text-white">ログアウト</a></li>
         </ul>
+
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
@@ -30,6 +31,7 @@
   <body>
  <h4>商品新規登録</h4></br>
   <%= form_for(@item, url: admin_items_path) do |f| %>
+  <a>商品画像</a><%= f.file_field :image, accept: "image/*" %>
   <a>商品名</a><%= f.text_field :name %></br>
   <a>商品説明</a><%= f.text_area :introduction %></br>
   <a>ジャンル</a><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %></br>
