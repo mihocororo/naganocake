@@ -27,6 +27,32 @@
   </header>
   </head>
   <body>
-  <h4>注文履歴一覧</h4>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+    <% if admin_signed_in? %>
+      <li>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      </li>
+    <% end %>
+    <div class="toptext">
+  <h4>注文履歴一覧</h4></div>
+  <div class="col-md-8 offset-md-1">
+<table class="table">
 
+    <tr>
+      <th>購入日時</th></th>
+      <th>購入者</th>
+      <th>注文履歴</th>
+      <th>注文ステータス</th>
+<% @orders.each do |order| %>
+      <td>
+      <%= link_to admin_order_path do %></td>
+      <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+      <% end %></td>
+      <td><%= customer.id %></td>
+      <td><%= order_item.amount %></td>
+
+      <td>
+      <%= order_status %>
+      </td>
+<% end %>
   </body>

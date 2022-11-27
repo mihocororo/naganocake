@@ -24,3 +24,4 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
 import '@fontawesome/fontawesome-free/js/all'
+

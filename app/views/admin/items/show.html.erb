@@ -13,11 +13,11 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white">商品一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">会員一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">注文履歴一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">ジャンル一覧</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">ログアウト</a></li>
+         <li><a href="/admin/items" class="nav-link px-2 text-white">商品一覧</a></li>
+          <li><a href="/admin/customers" class="nav-link px-2 text-white">会員一覧</a></li>
+          <li><a href="/admin" class="nav-link px-2 text-white">注文履歴一覧</a></li>
+          <li><a href="/admin/genres" class="nav-link px-2 text-white">ジャンル一覧</a></li>
+          <li><a href="/admin/sign_out" class="nav-link px-2 text-white">ログアウト</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -31,4 +31,22 @@
   <body>
   <h4>商品詳細</h4>
 
+<a>商品画像</a>
+<% if @item.image.attached? %>
+  <%= image_tag @item.image %>
+<% else %>
+  <%= image_tag 'no_image',size:"200x200" %>
+<% end %>
+
+
+<a>商品名</a><%= @item.name %></br>
+<a>商品説明</a><%= @item.introduction %></br>
+<a>ジャンル</a><%= @item.genre_id %></br>
+<a>税込み価格（税抜価格）</a><%= @item.price %></br>
+<a>販売ステータス</a>
+<% if @item.is_active== false %>販売中
+      <% else %>
+      販売停止中
+      <% end %></br>
+<%= link_to '編集する', edit_admin_item_path %>
   </body>

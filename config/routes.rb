@@ -16,10 +16,18 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #管理者
  namespace :admin do
     root to: 'homes#top'
+    # patch 'lists/:id' => 'lists#update', as: 'update_list'
     patch '/admin/genres/:id/edit' => 'genres#update', as: 'update_genre'
-    post '/admin/genres' => 'genres#create'
-    get '/admin/genres/:id/edit' => 'admin#edit', as: 'edit_list'
-    resources :items, except: [:destroy]
+    post 'genres' => 'genres#create'
+    get 'genres/new'
+    get 'genres' => 'genres#index'
+    get '/admin/genres/:id/edit' => 'genres#edit', as: 'edit_genre'
+    post 'items' => 'items#create'
+    get 'items/new'
+    patch '/admin/items/:id/edit' => 'items#update', as: 'update_item'
+    get 'items' => 'items#index'
+    delete 'admins' => 'sessions#destroy', as: 'destroy'
+    resources :items, only: [:show, :index, :new, :create, :edit, :update, :image]
     resources :customers, except: [:new, :create, :destroy]
     resources :genres, except: [:show, :destroy, :new]
     resources :orders, only: [:index, :show, :update] do
@@ -29,10 +37,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 #顧客
 
+    # root to: 'public/homes#top'
     get '/about' => 'public/homes#about', as: 'about'
     get '/' => 'public/homes#top'
     get '/items' => 'public/items#index'
     get	'/customers/sign_up' => 'public/registrations#new'
+    delete '/customers/sign_out' => 'public/sessions#destroy'
     resources :addresses, except: [:new, :show]
 
     resources :orders,only: [:create, :index, :show, :new] do
@@ -41,7 +51,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
         post 'confirm'
       end
     end
-
+namespace :customers do
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
         delete 'destroy_all'
@@ -50,7 +60,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
     resources :items, only: [:index, :show]
     # get	'/customers/sign_up' => 'public/registrations#new'
-    namespace :customers do
+
       # root to: 'public/homes#top'
 
       # get 'unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'

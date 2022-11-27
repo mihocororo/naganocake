@@ -30,22 +30,25 @@
   <body>
 
   <h4>ジャンル一覧・追加</h4>
-    <%= form_for(@genre, url: admin_genres_path) do |f| %>
+
+  <%= form_for(@genre, url: admin_genres_path) do |f| %>
 <div class="field">
     <%= f.label :ジャンル名 %><br />
 
 
-<%= f.text_field :name %>
+      <%= f.text_field :name %>
   </div>
 
 <div class="actions2">
-    <%= f.submit "新規登録" %>
-</div>
+    <%= f.submit "新規登録",class:"btn btn-outline-danger" %>
+
   <% end %>
+</div>
   <tbody>
 
 <div class="col-md-8 offset-md-1">
 <table class="table">
+
 <% @genres.each do |genre| %>
     <tr>
 
@@ -53,9 +56,9 @@
       <td><%= link_to "編集する", edit_admin_genre_path(genre) ,class:"btn btn-outline-danger" %></td>
 
     </tr>
-
+<% end %>
     </tbody>
     </table>
 
-<% end %>
+
 </body>
