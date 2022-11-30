@@ -11,6 +11,7 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <img src="img/no_image.jpg" class="img-thumbnail" alt="no_image.jpg">
           <li><a href="/admin/items" class="nav-link px-2 text-white">商品一覧</a></li>
           <li><a href="/admin/customers" class="nav-link px-2 text-white">会員一覧</a></li>
           <li><a href="/admin" class="nav-link px-2 text-white">注文履歴一覧</a></li>
@@ -33,8 +34,8 @@
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
     <% end %>
-    <div class="toptext">
-  <h4>注文履歴一覧</h4></div>
+    <div class = "toptext">
+  <h4 style = "color: green;">注文履歴一覧</h4></div>
   <div class="col-md-8 offset-md-1">
 <table class="table">
 

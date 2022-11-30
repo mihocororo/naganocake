@@ -17,3 +17,8 @@
 @import '~@fontawesome/fontawesome-free/scss/fontawesome';
 
 
+html{
+  text-align:center;
+  color:green;
+  background-color:green;
+}

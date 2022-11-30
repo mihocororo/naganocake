@@ -1,3 +1,13 @@
 // Place all the styles related to the admin/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.toptext{
+  text-align:center;
+  color:green;
+  background-color:green;
+}
+
+.main-visual {
+  width: 50%;
+  height: 300px;
+  background-image: url(app/assets/images/sweets_cupcake.png);}
