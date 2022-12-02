@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+    get 'customers/unsubscribe'
+    get 'customers/withdraw'
+  end
 # post '/admin/genres' => 'public/genres#create'
 # 顧客用
 # URL /customers/sign_in ...
@@ -38,6 +45,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #顧客
 
     # root to: 'public/homes#top'
+    get '/customers/my_page' => 'public/customers#show'
     get '/about' => 'public/homes#about', as: 'about'
     get '/' => 'public/homes#top'
     get '/items' => 'public/items#index'

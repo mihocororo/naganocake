@@ -1,3 +1,5 @@
+<!--<h1>Public::Customers#show</h1>-->
+<!--<p>Find me in app/views/public/customers/show.html.erb</p>-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/f1fbe89ccf.js" crossorigin="anonymous"></script>
@@ -74,79 +76,46 @@
     </div>
   </header>
 
-  <main class="cover-container d-flex w-40 h-10 p-3 mx-auto flex-column">
+  <!--<main class="cover-container d-flex w-40 h-10 p-3 mx-10 flex-column">-->
+<main class="px-3">
+  <%= form_for(resource,as:resource_name, url: registration_path(resource_name)) do |f| %>
+  <h5 class="mark">マイページ</h5>
 
+  <a>登録情報</a> <button type="button" class="btn btn-outline-success m-5">編集する</button>
+  <table class="table table-striped table-hover w-50">
+  <tbody>
+    <tr>
+      <td>氏名</td>
+      <td><%= @customer.last_name %><%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <td>カナ</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td>@fat</td>
+    </tr>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-<div class="container">
-  <div class="row gx-5">
-    <div class="row row-cols-3 mb-3 p">
+</table>
 
-    <div class="col mb-2"><h4 class = "mark">新規会員登録</h4></div>
-    <div class="col mb-2"></div>
-    <div class="col mb-2"></div>
-
-
-
-
-    <div class="col mb-2"><%= f.label :名前 %></div>
-    <div class="col mb-2">姓<%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" ,placeholder:"令和" %></div>
-    <div class="col mb-2">名<%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",placeholder:"道子" %></div>
-
-
-
-    <div class="col mb-2"><%= f.label :フリガナ %></div>
-    <div class="col mb-2">セイ<%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana",placeholder:"レイワ" %></div>
-    <div class="col mb-2">メイ<%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana",placeholder:"ミチコ" %></div>
-
-    <div class="col mb-2"><%= f.label :メールアドレス %></div>
-    <div class="col mb-2"><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"sample@example.com" %></div>
-    <div class="col mb-2"></div>
-
-
-    <div class="col mb-2"><%= f.label :郵便番号（ハイフンなし） %></div>
-    <div class="col mb-2"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code",placeholder:"0000000" %></div>
-    <div class="col mb-2"></div>
-
-    <div class="col mb-2"><%= f.label :住所 %></div>
-    <div class="col mb-2"><%= f.text_field :address, autofocus: true, autocomplete: "address", :size=>"60",placeholder:"東京都渋谷区代々木神園町0－0" %></div>
-    <div class="col mb-2"></div>
-
-
-    <div class="col mb-2"><%= f.label :電話番号（ハイフンなし） %></div>
-    <div class="col mb-2"><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number",placeholder:"00000000000" %></div>
-    <div class="col mb-2"></div>
-
-
-    <div class="col mb-2"><%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br /></div>
-    <div class="col mb-2"><%= f.password_field :password, autocomplete: "new-password" %></div>
-    <div class="col mb-2"></div>
-
-
-    <div class="col mb-2"><%= f.label :パスワード（確認用） %></div>
-    <div class="col mb-2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
-    <div class="col mb-2"></div>
-
-    <div class="col mb-2"></div>
-    <div class="col mb-2"><%= f.submit "新規登録" %></div>
-    <div class="col mb-2"></div>
-  </div>
-  </div>
-<% end %>
-
-
-<h4 class = "mark">既に登録済みの方</h4>
-<a href="/customers/sign_in">こちら</a>  からログインしてください。
-<!--<%= render "public/shared/links" %>-->
-
-
+<a>配送先</a> <button type="button" class="btn btn-outline-primary m-5" href="/addresses">一覧を見る</button>
+<a>注文履歴</a><button type="button" class="btn btn-outline-primary m-5" href="/orders">一覧を見る</button>
 
   </main>
-
+  <% end %>
   <footer class="mt-auto text-white-50">
     <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
   </footer>
