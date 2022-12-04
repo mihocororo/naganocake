@@ -3,7 +3,7 @@
 <script src="https://kit.fontawesome.com/f1fbe89ccf.js" crossorigin="anonymous"></script>
 
 
-<html lang="ja" class="h-100">
+<html lang="ja" class="h-75">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,7 +62,11 @@
         <a class="nav-link px-2" href="/admin/customers">会員一覧</a>
         <a class="nav-link px-2" href="/admin">注文履歴一覧</a>
         <a class="nav-link px-2" href="/admin/genres">ジャンル一覧</a>
+        <% if admin_signed_in? %>
         <a class="nav-link px-2" href="/admin/sign_out">ログアウト</a>
+        <% else %>
+        <a class="nav-link px-2" href="/admin/sign_in">ログイン</a>
+        <% end %>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
@@ -77,18 +81,18 @@
   </header>
 
   <main class="px-3">
-  <h4>ジャンル編集</h4>
+  <h4 class="mark mb-5">ジャンル編集</h4>
 
 <div class="field">
   <%= form_with model: @genre, url: admin_genre_path, method: :patch, remote: true do |f| %>
 
 
-    <%= f.label :name, "ジャンル名" %><br />
+    <%= f.label :name, "ジャンル名" %>
     <%= f.text_field :name, autocomplete: "name" %>
   </div>
 
 <div class="actions2">
-    <%= f.submit "変更を保存" %>
+    <%= f.submit "変更を保存",class:"btn btn-outline-success mt-5" %>
 </div>
   <% end %>
 

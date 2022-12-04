@@ -62,7 +62,11 @@
         <a class="nav-link px-2" href="/admin/customers">会員一覧</a>
         <a class="nav-link px-2" href="/admin">注文履歴一覧</a>
         <a class="nav-link px-2" href="/admin/genres">ジャンル一覧</a>
+        <% if admin_signed_in? %>
         <a class="nav-link px-2" href="/admin/sign_out">ログアウト</a>
+        <% else %>
+        <a class="nav-link px-2" href="/admin/sign_in">ログイン</a>
+        <% end %>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>

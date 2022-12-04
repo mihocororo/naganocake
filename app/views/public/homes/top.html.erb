@@ -61,7 +61,12 @@
         <a class="nav-link" href="/about">About</a>
         <a class="nav-link" href="/items">商品一覧</a>
         <a class="nav-link" href="customers/sign_up">新規登録</a>
+        <% if customer_signed_in? %>
+        <a class="nav-link px-2" href="/customers/sign_out">ログアウト</a>
+        <% else %>
         <a class="nav-link" href="/customers/sign_in">ログイン</a>
+        <% end %>
+
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
@@ -75,8 +80,16 @@
     </div>
   </header>
 
-  <main class="px-3">
-    <div class="col-md-2 offset-md-1">
+
+
+<main class="px-3">
+<p class="lead">
+          ようこそ、ながのCAKEへ！</br>
+          このサイトは、ケーキ販売のECサイトになります。</br>
+          会員でない方も商品の閲覧はできますが、</br>
+          購入には<a class="link" href="/customers/sign_up">会員登録<a></a>が必要になります。</br>
+        </p>
+<div class="col-md-2 offset-md-1">
 <table class="table">
 <h4>ジャンル一覧</h4>
 <% @genres.each do |genre| %>
@@ -87,13 +100,6 @@
 </tbody>
 </table>
 </div>
-<p class="main-visual-text">
-          ようこそ、ながのCAKEへ！</br>
-          このサイトは、ケーキ販売のECサイトになります。</br>
-          会員でない方も商品の閲覧はできますが、</br>
-          購入には会員登録が必要になります。</br>
-        </p>
-
 <h3>新着商品</h3>
 <% @items.each do |item| %>
     <tr>

@@ -62,7 +62,11 @@
         <a class="nav-link px-2" href="/admin/customers">会員一覧</a>
         <a class="nav-link px-2" href="/admin">注文履歴一覧</a>
         <a class="nav-link px-2" href="/admin/genres">ジャンル一覧</a>
+        <% if admin_signed_in? %>
         <a class="nav-link px-2" href="/admin/sign_out">ログアウト</a>
+        <% else %>
+        <a class="nav-link px-2" href="/admin/sign_in">ログイン</a>
+        <% end %>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
@@ -77,7 +81,7 @@
   </header>
 
   <main class="px-3">
-  <h4>ジャンル一覧・追加</h4>
+  <h4 class="mark">ジャンル追加</h4>
 
   <%= form_for(@genre, url: admin_genres_path) do |f| %>
 <div class="field">
@@ -88,20 +92,21 @@
   </div>
 
 <div class="actions2">
-    <%= f.submit "新規登録",class:"btn btn-outline-danger" %>
+    <%= f.submit "新規登録",class:"btn btn-outline-danger mt-5" %>
 
   <% end %>
 </div>
   <tbody>
 
-<div class="col-md-8 offset-md-1">
+<div class="col-md-2 offset-md-1">
 <table class="table">
 
+<h4>ジャンル一覧</h4>
 <% @genres.each do |genre| %>
     <tr>
 
       <td><%= genre.name %></td>
-      <td><%= link_to "編集する", edit_admin_genre_path(genre) ,class:"btn btn-outline-danger" %></td>
+      <td><%= link_to "編集する", edit_admin_genre_path(genre) ,class:"btn btn-outline-success" %></td>
 
     </tr>
 <% end %>

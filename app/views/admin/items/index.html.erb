@@ -62,7 +62,11 @@
         <a class="nav-link px-2" href="/admin/customers">会員一覧</a>
         <a class="nav-link px-2" href="/admin">注文履歴一覧</a>
         <a class="nav-link px-2" href="/admin/genres">ジャンル一覧</a>
+        <% if admin_signed_in? %>
         <a class="nav-link px-2" href="/admin/sign_out">ログアウト</a>
+        <% else %>
+        <a class="nav-link px-2" href="/admin/sign_in">ログイン</a>
+        <% end %>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
@@ -78,15 +82,17 @@
 
   <main class="px-3">
 
-<div class="toptext">
-  <h4>商品一覧</h4></div>
+  <h4 class="mark">
+  <div class="container">
+    <div class="row mb-2">
+    <div class="col">商品一覧</div>
 
-  <li class="nav-item">
-          <%= link_to new_admin_item_path, class: "no-underline" do %>
-          <i class="bi bi-balloon-fill"></i>New
-
-          <% end %>
-
+  <div class="col">
+    <%= link_to new_admin_item_path, class: "no-underline" do %>
+  <i class="fa-solid fa-circle-plus"></i>
+    <% end %>
+  </div></div></div>
+</h4>
 
   <div class="col-md-8 offset-md-1">
 <table class="table">
@@ -103,10 +109,10 @@
       <td><%= item.id %></td>
       <td><%= link_to item.name , admin_item_path(item) ,class:"btn btn-outline-danger" %></td>
       <td><%= item.price %></td>
-      <td><%= item.name %></td>
-      <td><% if item.is_active== false %>販売中
+      <td><%= item.genre.name %></td>
+      <td><% if item.is_active== false %>販売停止中
       <% else %>
-      販売停止中
+      販売中
 
 
       <% end %>
@@ -120,9 +126,9 @@
 
   </main>
 
-  <footer class="mt-auto text-white-50">
-    <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
-  </footer>
+  <!--<footer class="mt-auto text-white-50">-->
+  <!--  <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>-->
+  <!--</footer>-->
 </div>
 
 

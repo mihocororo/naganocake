@@ -45,6 +45,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #顧客
 
     # root to: 'public/homes#top'
+    patch '/customers/information/edit' => 'public/customers#edit', as: 'update_customer'
+    get '/customers/information/edit' => 'public/customers#edit'
     get '/customers/my_page' => 'public/customers#show'
     get '/about' => 'public/homes#about', as: 'about'
     get '/' => 'public/homes#top'
