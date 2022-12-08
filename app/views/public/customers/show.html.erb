@@ -63,7 +63,11 @@
          <a class="nav-link" href="/about">About</a>
         <a class="nav-link" href="/items">商品一覧</a>
         <a class="nav-link" href="/customers/sign_up">新規登録</a>
+        <% if customer_signed_in? %>
+        <a class="nav-link px-2" href="/customers/sign_out">ログアウト</a>
+        <% else %>
         <a class="nav-link" href="/customers/sign_in">ログイン</a>
+        <% end %>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
         </form>
@@ -80,8 +84,8 @@
 <main class="px-3">
 
   <h5 class="mark">マイページ</h5>
-<a class="btn btn-outline-success m-5" href="/customers/information/edit" role="button">編集する</a>
-  <a>登録情報</a> <button type="button" class="btn btn-outline-success m-5">編集する</button>
+
+  <a>登録情報</a> <a class="btn btn-outline-success m-5" href="/customers/information/edit" role="button">編集する</a>
   <table class="table table-striped table-hover w-50">
   <tbody>
     <tr>

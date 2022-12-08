@@ -31,6 +31,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get '/admin/genres/:id/edit' => 'genres#edit', as: 'edit_genre'
     post 'items' => 'items#create'
     get 'items/new'
+    get '/admin/items/:id/edit' => 'items#edit', as: 'edit_item'
     patch '/admin/items/:id/edit' => 'items#update', as: 'update_item'
     get 'items' => 'items#index'
     delete 'admins' => 'sessions#destroy', as: 'destroy'
@@ -45,14 +46,18 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #顧客
 
     # root to: 'public/homes#top'
+
+    get '/customers/information/edit' => 'public/customers#edit' ,as: 'edit_customer'
     patch '/customers/information/edit' => 'public/customers#edit', as: 'update_customer'
-    get '/customers/information/edit' => 'public/customers#edit'
     get '/customers/my_page' => 'public/customers#show'
     get '/about' => 'public/homes#about', as: 'about'
     get '/' => 'public/homes#top'
     get '/items' => 'public/items#index'
     get	'/customers/sign_up' => 'public/registrations#new'
     delete '/customers/sign_out' => 'public/sessions#destroy'
+    get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
+    patch '/customers/withdraw' => 'public/customers#withdrawal', as: 'withdrawal'
+    get 'items/:id' => 'public/items#show'
     resources :addresses, except: [:new, :show]
 
     resources :orders,only: [:create, :index, :show, :new] do
@@ -62,7 +67,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       end
     end
 namespace :customers do
-    resources :cart_items, only: [:index, :create, :update, :destroy] do
+    resources :cart_items, only: [:index, :create, :update, :destroy,:new] do
       collection do
         delete 'destroy_all'
       end

@@ -94,10 +94,11 @@
       <th>氏名</th>
       <th>メールアドレス</th>
       <th>ステータス</th>
-<% @customers.each do |item| %>
+    </tr>
+<% @customers.each do |customer| %>
       <td><%= customer.id %></td>
-      <td><%= link_to customer.last_name , admin_customer_path,class:"btn btn-outline-danger" %></td>
-      <td><%= customer.mail %></td>
+      <td><%= link_to customer.last_name , admin_customers_path,class:"btn btn-outline-danger" %></td>
+      <td><%= customer.email %></td>
       <td>
       <% if customer.is_deleted== false %>有効
       <% else %>
@@ -105,7 +106,7 @@
       <% end %>
       <% end %>
       </td>
-
+      <%= paginate @customers %>
 
 
 

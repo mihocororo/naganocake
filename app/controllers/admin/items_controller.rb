@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
-
+    
   # @item = Item.new
 
   end
@@ -14,7 +14,7 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(items_params)
-    if @item.save
+    if @item.save!
       redirect_to admin_items_path
     else
       redirect_to new_admin_item_path

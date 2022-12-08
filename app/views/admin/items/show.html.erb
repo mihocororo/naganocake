@@ -83,11 +83,18 @@
   <main class="px-3">
 
 <h4 class="mark">商品詳細</h4>
-<div class="container w-25 mt-5">
-<div class="row row-cols-2 mb-2">
-<div class="col">商品画像</div>
-<div class="col"></div>
-</div>
+<table align="center">
+  <tr>
+    <td>
+<h4>商品画像</h4>
+<h4>
+  <% if @item.image.attached? %>
+  <%= image_tag @item.image, size: "200x200" %>
+  <% else %>
+  <% end %>
+</h4></td>
+<td>
+<div class="container w-100 mt-5">
 <div class="row row-cols-2 mb-2">
 <div class="col">商品名</div>
 <div class="col"><%= @item.name %></div>
@@ -102,7 +109,7 @@
 </div>
 <div class="row row-cols-2 mb-2">
 <div class="col">税込み価格（税抜価格）</div>
-<div class="col"><%= @item.price %></div>
+<div class="col">￥<%= @item.price %></div>
 </div>
 <div class="row row-cols-2 mb-5">
 <div class="col">販売ステータス</div>
@@ -110,7 +117,7 @@
   <% if @item.is_active== false %>販売停止中
   <% else %>販売中
   <% end %>
-</div></div>
+</div></div></td></tr></table>
 <%= link_to '編集する', edit_admin_item_path, class:"btn btn-outline-success" %>
 
 

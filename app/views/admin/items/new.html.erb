@@ -85,7 +85,7 @@
 
   <h4 class="mark">商品新規登録</h4>
 
-  <%= form_for(@item, url: admin_items_path) do |f| %>
+  <%= form_with model: @item, url: admin_items_path do |f| %>
   <div class="container w-25 mt-5">
   <div class="row row-cols-2 mb-2">
   <div class="col">商品画像</div>
@@ -105,7 +105,7 @@
   </div>
   <div class="row row-cols-2 mb-2">
   <div class="col">税抜価格</div>
-  <div class="col"><%= f.text_area :price %></div>
+  <div class="col"><%= f.text_field :price %></div>
   </div>
   <div class="row row-cols-2 mb-2">
   <div class="col"><%= f.label :販売ステータス %></div>
