@@ -46,7 +46,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #顧客
 
     # root to: 'public/homes#top'
-
+    get '/cart_items' => 'public/cart_items#index'
     get '/customers/information/edit' => 'public/customers#edit' ,as: 'edit_customer'
     patch '/customers/information/edit' => 'public/customers#edit', as: 'update_customer'
     get '/customers/my_page' => 'public/customers#show'
@@ -58,16 +58,29 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/withdraw' => 'public/customers#withdrawal', as: 'withdrawal'
     get 'items/:id' => 'public/items#show'
-    resources :addresses, except: [:new, :show]
 
+    # get 'cart_items' => 'public/cart_items#index'
+    # post 'cart_items' => 'public/cart_items#create'
+    delete '/cart_items/:id' => 'public/cart_items#destroy',as: 'destroy_CartItem'
+    get '/cart_items/:id' => 'public/cart_items#index', as: 'cart_item'
+    patch '/cart_items/:id' => 'public/cart_items#update', as: 'update_CartItem'
+    # get 'cart_items' => 'cart_items#new'
+
+    # patch 'cart_items' => 'public/customers#', as: 'withdrawal'
+    get 'orders/new' => 'public/orders#new'
+    post 'orders/confirm' => 'public/orders#confirm'
+    get 'orders/complete' => 'public/orders#complete'
+    get 'orders' => 'public/orders#index'
+    resources :addresses, except: [:new, :show]
+    resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
     resources :orders,only: [:create, :index, :show, :new] do
       collection do
         get 'complete'
         post 'confirm'
       end
     end
-namespace :customers do
-    resources :cart_items, only: [:index, :create, :update, :destroy,:new] do
+namespace :public do
+    resources :cart_items, only: [:index, :create, :update, :destroy,:destroy_all] do
       collection do
         delete 'destroy_all'
       end

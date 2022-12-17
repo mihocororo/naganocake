@@ -3,7 +3,7 @@
 <script src="https://kit.fontawesome.com/f1fbe89ccf.js" crossorigin="anonymous"></script>
 
 
-<html lang="ja" class="h-100">
+<html lang="ja" class="h-50">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,8 +72,7 @@
         </form>
 
         <li class="nav-item">
-          <%= link_to 'admin', class: "no-underline" do %>
-          <!--<i class="fas fa-home"></i>-->
+          <%= link_to '/cart_items', class: "no-underline" do %>
           <h4><i class="fa-solid fa-cart-shopping"></i></h4>
           <% end %>
       </nav>
@@ -95,15 +94,26 @@
 </tbody>
 </table>
 </div>
-<h3>商品一覧</h3><h5>(全<%= @items.count %>件)</h5>
-<% @items.each do |item| %>
-    <tr>
-      <td><%= link_to item.name, "/items/#{item.id}" %></td>
-      <td>￥<%= item.price %></td>
-    </tr>
-<% end %>
-<%= paginate @items %>
 
+<h3>商品一覧</h3><h5>(全<%= @items.count %>件)</h5>
+<div class="album py-5 bg-light">
+
+    <div class="container w-75">
+<div class="row row-cols-4">
+<% @items.each do |item| %>
+<div class="col">
+    <div class="card shadow-sm">
+     <%= image_tag item.image, width: "100%", height: "150" %>
+      <div class="card-body"><%= link_to item.name, "/items/#{item.id}" %>
+      <p class="card-text">￥<%= item.price %>
+      </div>
+    </div>
+</div>
+<% end %>
+ </div>
+    </div>
+<%= paginate @items %>
+</div>
   </main>
 
   <footer class="mt-auto text-white-50">
