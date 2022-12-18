@@ -89,14 +89,34 @@
       <th>数量</th>
       <th>小計</th>
       <!--current_customer.cart_items.each do |cart| -->
-      <td>
-      </td>
+    </tr>
+    <% current_customer.cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= image_tag cart_item.item.image, size: "100x100" %><%= cart_item.item.name %></td>
+      <td>￥<%= (cart_item.item.price*1.10).round %></td>
+      <td><%= cart_item.amount %></td>
+      <td>￥<%= (cart_item.item.price*cart_item.amount*1.10).round %></td>
+    </tr>
+    <% end %>
+</table>
 
-      <td></td>
 
-      <td>
+<table class="table">
+  <tr>
+    <th>送料</th>
+    <th>800</th>
+  </tr>
 
-      </td></table>
+  <tr>
+    <th>商品合計</th>
+    <td>￥<%= @total_price %></td>
+  </tr>
+
+  <tr>
+    <th>請求金額</th>
+    <td>￥<%= @total_price+800 %></td>
+  </tr>
+</table>
 
 
   <p>支払方法</p>

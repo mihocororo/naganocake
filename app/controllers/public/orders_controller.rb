@@ -6,7 +6,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new
-    # @cart_items = current_customer.order
+    @total_price = calculate(current_customer)
     @orders = Order.all
   end
 
@@ -25,6 +25,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+  end
+
+  def calculate(customer)
+    total_price = 0
+    customer.cart_items.each do |cart_item|
+      total_price += cart_item.amount*cart_item.item.price
+  end
+  return (total_price*1.1).round
   end
 
   private
