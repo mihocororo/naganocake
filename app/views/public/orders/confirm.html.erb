@@ -118,24 +118,30 @@
   </tr>
 </table>
 
+<table class="table">
+  <tr>
 
-  <p>支払方法</p>
-  <% if params[:id] == 0 %>銀行振込
-  <% else %>
-     クレジットカード
+  <th>支払方法</th>
+  <td><%= @order.pay_method %></td>
 
-  <% end %>
-  <%= @order.pay_method %>
 
-  <p>お届け先</p>
-  <% if @order.order_status == false %>銀行振込
-  <% end %>
-  <% if @order.order_status == true %>0
-  <% else %>
-      クレジットカード
-  <% end %>
-<%= session[:pay_method] %>
+  </tr>
 
+  <tr>
+  <th>お届け先</th>
+
+
+  <td>〒<%= @order.postal_code %>
+    <%= @order.address %></td>
+
+</tr>
+
+<tr>
+<th></th>
+<td><%= current_customer.last_name %>
+    <%= current_customer.first_name %></td>
+    </tr>
+</table>
   </main>
 
 
