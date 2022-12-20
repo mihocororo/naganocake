@@ -142,6 +142,13 @@
     <%= current_customer.first_name %></td>
     </tr>
 </table>
+
+<!--<%= link_to "注文を確定する", orders_complete_path, class: 'btn btn-outline-success' %>-->
+
+<%= form_with model: @order, method: :post, local:true do |f| %>
+<%= f.submit '注文を確定する', class: 'btn btn-outline-success' %>
+<% end %>
+
   </main>
 
 

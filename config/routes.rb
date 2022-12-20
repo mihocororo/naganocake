@@ -70,7 +70,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'orders/new' => 'public/orders#new'
     post 'orders/confirm' => 'public/orders#confirm'
     get 'orders/complete' => 'public/orders#complete'
+    get 'orders/:id' => 'public/orders#show'
     get 'orders' => 'public/orders#index'
+    post 'orders' => 'public/orders#create'
     resources :addresses, except: [:new, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
     resources :orders,only: [:create, :index, :show, :new] do

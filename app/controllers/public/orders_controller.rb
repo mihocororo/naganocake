@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
   def new
     @order = Order.new
     @addresses = current_customer.address
@@ -40,13 +41,16 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
-    if @order.save
+    # if @order.save
     redirect_to orders_complete_path
-    else
-    end
+    # else
+    # end
   end
 
   def create
+    # @order = current_customer.orders.new(order_params)
+    # @order.save
+    redirect_to orders_complete_path
   end
 
   def index
@@ -54,6 +58,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+
   end
 
   def calculate(customer)
