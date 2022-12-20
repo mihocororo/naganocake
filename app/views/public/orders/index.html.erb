@@ -97,10 +97,11 @@
       <td><%= order.payment_price %></td>
       <td><% order.order_items.each do |order_item| %></td>
       <td><%= order.status %></td>
+          <% end %>
       <td><%= link_to "表示する", order_path(order) %></td>
     </tr>
       </table>
-          <% end %>
+
 <% end %>
   </main>
 

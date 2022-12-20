@@ -41,19 +41,31 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
-    # if @order.save
-    redirect_to orders_complete_path
-    # else
-    # end
+
   end
 
   def create
-    # @order = current_customer.orders.new(order_params)
+    @order = current_customer.orders.new
     # @order.save
+
+     @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+      @order_item = OrderDetail.new
+      @order_item.item_id = cart_item.item_id
+      @order_item.order_id = @order.id
+      @order_item.count = cart_item.count
+      @order_item.price = cart_item.item.price * cart_item.count
+      @order_item.save
+      end
+    # 最後にカートを全て削除する
+    @cart_items.destroy_all
+
+
     redirect_to orders_complete_path
   end
 
   def index
+    # @orders = current_customer.orders
     @orders = Order.all
   end
 
