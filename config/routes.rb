@@ -58,7 +58,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/withdraw' => 'public/customers#withdrawal', as: 'withdrawal'
     get 'items/:id' => 'public/items#show'
-
+    # post 'items' => 'public/items#show'
     # get 'cart_items' => 'public/cart_items#index'
     # post 'cart_items' => 'public/cart_items#create'
     delete '/cart_items/:id' => 'public/cart_items#destroy',as: 'destroy_CartItem'

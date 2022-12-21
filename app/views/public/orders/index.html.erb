@@ -58,7 +58,11 @@
 
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <!--<a class="nav-link active" aria-current="page" href="#">Home</a>-->
+        <% if customer_signed_in? %>
+        <a class="nav-link px-2" href="/customers/my_page">マイページ</a>
+        <% else %>
          <a class="nav-link" href="/about">About</a>
+        <% end %>
         <a class="nav-link" href="/items">商品一覧</a>
         <a class="nav-link" href="/customers/sign_up">新規登録</a>
         <% if customer_signed_in? %>
@@ -83,25 +87,30 @@
   <table class="table">
 
     <tr>
-      <th>注文日</th></th>
+      <th>注文日</th>
       <th>配送先</th>
       <th>注文商品</th>
       <th>支払金額</th>
       <th>ステータス</th>
       <th>注文詳細</th>
     </tr>
+    </table>
 <% @orders.each do |order| %>
+
+<% order.order_items.each do |order_item| %>
+<table class="table">
     <tr>
       <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-      <td><%= order.postal_code %><%= order.address %><%= order.name %></td>
+      <td><%= order.postal_code %><%= order.address %></td>
+      <td><%= order.name %></td>
       <td><%= order.payment_price %></td>
-      <td><% order.order_items.each do |order_item| %></td>
-      <td><%= order.status %></td>
-          <% end %>
+
+      <td><%= order.order_status %></td>
+
       <td><%= link_to "表示する", order_path(order) %></td>
     </tr>
       </table>
-
+<% end %>
 <% end %>
   </main>
 

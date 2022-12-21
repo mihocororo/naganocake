@@ -59,7 +59,11 @@
 
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <!--<a class="nav-link active" aria-current="page" href="#">Home</a>-->
+        <% if customer_signed_in? %>
+        <a class="nav-link px-2" href="/customers/my_page">マイページ</a>
+        <% else %>
          <a class="nav-link" href="/about">About</a>
+        <% end %>
         <a class="nav-link" href="/items">商品一覧</a>
         <a class="nav-link" href="/customers/sign_up">新規登録</a>
         <% if customer_signed_in? %>
@@ -104,17 +108,17 @@
 
 
 
-    <%= f.radio_button :my_address, "3"%>
-    <%= f.label :"新しいお届け先"%>
+    <%= f.radio_button :my_address, "2" %>
+    <%= f.label :"新しいお届け先" %>
 
- <p><%= f.label :"郵便番号（ハイフンなし）",class:"col-sm-4 form-control-static"%>
-    <%= f.text_field :postal_code, class:"col-sm-3 form-control-static",placeholder:"0000000"%></p>
+ <p><%= f.label :"郵便番号（ハイフンなし）",class:"col-sm-4 form-control-static" %>
+    <%= f.text_field :postal_code, class:"col-sm-3 form-control-static",placeholder:"0000000" %></p>
 
- <p><%= f.label :"住所",class:"col-sm-4 form-control-static"%>
-    <%= f.text_field :address, class:"col-sm-6 form-control-static",placeholder:"東京都渋谷区代々木神園町0-0",:size =>"100"%></p>
+ <p><%= f.label :"住所",class:"col-sm-4 form-control-static" %>
+    <%= f.text_field :address, class:"col-sm-6 form-control-static",placeholder:"東京都渋谷区代々木神園町0-0",:size =>"100" %></p>
 
- <p><%= f.label :"宛名",class:"col-sm-4 form-control-static"%>
-    <%= f.text_field :name, class:"col-sm-3 form-control-static",placeholder:"令和道子"%></br></p>
+ <p><%= f.label :"宛名",class:"col-sm-4 form-control-static" %>
+    <%= f.text_field :name, class:"col-sm-3 form-control-static",placeholder:"令和道子" %></br></p>
 
 
 <div class="d-grid gap-2 col-3 mx-auto">

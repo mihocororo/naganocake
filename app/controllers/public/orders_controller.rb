@@ -8,31 +8,31 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(
       pay_method: params[:order][:pay_method])
-    @total_price = calculate(current_customer)
+    @payment_price = calculate(current_customer)
     @orders = Order.all
 
     if params[:order][:my_address] == "1"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      # @order.name = last_name(current_customer)
+      @order.name = (current_customer.last_name)+(current_customer.first_name)
 
-
-    # elsif params[:order][:my_address] == "2"
-    #   ship = Address.find(params[:order][:address_id])
-    #   @order.postal_code = ship.postal_code
-    #   @order.address = ship.address
-    #   @order.name = ship.name
 
     elsif params[:order][:my_address] == "3"
+      ship = Address.find(params[:order][:address_id])
+      @order.postal_code = ship.postal_code
+      @order.address = ship.address
+      @order.name = ship.name
+
+    elsif params[:order][:my_address] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
       @address = "1"
 
-      unless @order.valid? == true
-        @addresses = Address.where(customer: current_customer)
-        render :new
-      end
+      # unless @order.valid? == true
+      #   @addresses = Address.where(customer: current_customer)
+      #   render :new
+      # end
     end
 
 
@@ -46,18 +46,20 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new
-    # @order.save
+    @order.save
 
      @cart_items = current_customer.cart_items
       @cart_items.each do |cart_item|
-      @order_item = OrderDetail.new
+      @order_item = OrderItem.new
       @order_item.item_id = cart_item.item_id
       @order_item.order_id = @order.id
-      @order_item.count = cart_item.count
-      @order_item.price = cart_item.item.price * cart_item.count
+      @order_item.amount = cart_item.amount
+      @order_item.price = cart_item.item.price * cart_item.amount
+      @order_item.name = cart_item.item.name
       @order_item.save
+
       end
-    # 最後にカートを全て削除する
+
     @cart_items.destroy_all
 
 
@@ -65,13 +67,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    # @orders = current_customer.orders
-    @orders = Order.all
+    @orders = current_customer.orders
+    # @orders = Order.all
   end
 
   def show
     @order = Order.find(params[:id])
-
+    @payment_price = calculate(current_customer)
+    @order_items = @order.order_items
   end
 
   def calculate(customer)

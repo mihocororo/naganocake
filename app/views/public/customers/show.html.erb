@@ -60,7 +60,11 @@
 
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <!--<a class="nav-link active" aria-current="page" href="#">Home</a>-->
+        <% if customer_signed_in? %>
+        <a class="nav-link px-2" href="/customers/my_page">マイページ</a>
+        <% else %>
          <a class="nav-link" href="/about">About</a>
+        <% end %>
         <a class="nav-link" href="/items">商品一覧</a>
         <a class="nav-link" href="/customers/sign_up">新規登録</a>
         <% if customer_signed_in? %>
@@ -115,13 +119,11 @@
 </table>
 
 <a>配送先</a> <button type="button" class="btn btn-outline-primary m-5" href="/addresses">一覧を見る</button>
-<a>注文履歴</a><button type="button" class="btn btn-outline-primary m-5" href="/orders">一覧を見る</button>
+<a>注文履歴</a><a class="btn btn-outline-primary m-5" href="/orders" role="button">一覧を見る</a></button>
 
   </main>
 
-  <footer class="mt-auto text-white-50">
-    <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
-  </footer>
+
 </div>
 
 
