@@ -8,7 +8,7 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(
       pay_method: params[:order][:pay_method])
-    @payment_price = calculate(current_customer)
+    # @payment_price = calculate(current_customer)
     @orders = Order.all
 
     if params[:order][:my_address] == "1"
@@ -28,17 +28,17 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
       @address = "1"
-
+    end
       # unless @order.valid? == true
       #   @addresses = Address.where(customer: current_customer)
       #   render :new
       # end
-    end
-
-
 
 
   end
+
+
+
 
   def complete
 
@@ -58,16 +58,23 @@ class Public::OrdersController < ApplicationController
       @order_item.name = cart_item.item.name
       @order_item.save
 
-      end
+    sum = 0
+    cart_items.each do |cart_item|
+    sum += cart_item.amount*cart_item.item.price
+    end
+    session[:order][:payment_price] = sum + 800
+
 
     @cart_items.destroy_all
 
 
     redirect_to orders_complete_path
   end
+  end
 
   def index
     @orders = current_customer.orders
+    # @payment_price = calculate(current_customer)
     # @orders = Order.all
   end
 
@@ -78,15 +85,23 @@ class Public::OrdersController < ApplicationController
   end
 
   def calculate(customer)
-    total_price = 0
+    sum = 0
     customer.cart_items.each do |cart_item|
-      total_price += cart_item.amount*cart_item.item.price
+      sum += cart_item.amount*cart_item.item.price
   end
-  return (total_price*1.1).round
+  # return (payment_price*1.1).round
   end
 
   private
   def order_params
     params.require(:order).permit(:customer_id, :name, :postal_code, :address, :postage,:payment_price,:pay_method,:order_status)
   end
+
+  private
+  def address_params
+    params.require(:order).permit(:name, :postal_code, :address)
+  end
+
+
+
 end

@@ -94,24 +94,24 @@
       <th>ステータス</th>
       <th>注文詳細</th>
     </tr>
-    </table>
+    <!--</table>-->
 <% @orders.each do |order| %>
 
 <% order.order_items.each do |order_item| %>
-<table class="table">
+<!--<table class="table">-->
     <tr>
       <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-      <td><%= order.postal_code %><%= order.address %></td>
-      <td><%= order.name %></td>
-      <td><%= order.payment_price %></td>
+      <td><%= current_customer.postal_code %><%= current_customer.address %></td>
+      <td><%= order_item.item.name %></td>
+      <td><%= @payment_price %></td>
 
       <td><%= order.order_status %></td>
 
       <td><%= link_to "表示する", order_path(order) %></td>
     </tr>
-      </table>
+
 <% end %>
-<% end %>
+<% end %></table>
   </main>
 
   <!--<footer class="mt-auto text-white-50">-->

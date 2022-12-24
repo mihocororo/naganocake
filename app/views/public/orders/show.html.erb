@@ -99,6 +99,7 @@
         <td><%= @order.postal_code %><br>
       	  <%= @order.address %><br>
       	  <%= @order.name %>
+      	  <%= current_customer.postal_code %><%= current_customer.address %>
         </td>
       </tr>
       <tr>
@@ -123,7 +124,7 @@
     </tr>
     <tr>
       <th>ご請求金額</th>
-      <td><%= @payment_price+800 %></td>
+      <td><%= @payment_price %></td>
     </tr>
   </table>
 	<strong>注文内容</strong>
@@ -139,10 +140,10 @@
   	<tbody>
   	<% @order_items.each do |order_item| %>
       <tr>
-		    <td><%= @order_item.name %></td>
-        <td></td>
+		    <td><%= order_item.item.name %></td>
+        <td>￥<%= (order_item.item.price*1.10).round %></td>
 		    <td><%= order_item.amount %></td>
-		    <td></td>
+		    <td>￥<%= (order_item.item.price*1.10*order_item.amount).round %></td>
       </tr>
     <% end %>
     </tbody>

@@ -23,7 +23,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #管理者
  namespace :admin do
     root to: 'homes#top'
-    # patch 'lists/:id' => 'lists#update', as: 'update_list'
+    # get '/admin/customers/:id' => 'costomers#show'
+    # patch '/admin/customers/:id' => 'costomers#update', as: 'update_costomers'
+    patch '/admin/customers/:id/edit' => 'customers#update', as: 'update_customer'
     patch '/admin/genres/:id/edit' => 'genres#update', as: 'update_genre'
     post 'genres' => 'genres#create'
     get 'genres/new'
@@ -38,8 +40,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :items, only: [:show, :index, :new, :create, :edit, :update, :image]
     resources :customers, except: [:new, :create, :destroy]
     resources :genres, except: [:show, :destroy, :new]
+    resources :order_items, only: [:update]
     resources :orders, only: [:index, :show, :update] do
-     resources :order_details, only: [:index, :update]
+
     end
   end
 
