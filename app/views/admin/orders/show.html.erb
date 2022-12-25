@@ -98,13 +98,13 @@
 
 <!--<table class="table">-->
     <tr>
-      <td><%= @orders.name %></td>
-      <td><%= @orders.created_at.strftime('%Y/%m/%d') %></td>
-      <td><%= @orders.postal_code %><%= @orders.address %></td>
+      <td><%= @order.name %></td>
+      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= @order.postal_code %><%= @order.address %></td>
 
-      <td><%= @orders.pay_method %></td>
+      <td><%= @order.pay_method %></td>
 
-      <td><%= @orders.order_status %></td>
+      <td><%= @order.order_status %></td>
 
 
 
@@ -120,12 +120,12 @@
       <th>小計</th>
 
     </tr>
-<% @order_items.each do |d| %>
+<% @order_items.each do |order_item| %>
 <tr>
-      <td><%= d.item.name %></td>
-      <td>￥<%= (d.item_price*1.10).round %></td>
-      <td><%= d.amount %></td>
-      <td><%= ((d.item_price*d.amount)*1.10).round %></td>
+      <td><%= order_items.name %></td>
+      <td>￥<%= (order_items.item.price*1.10).round %></td>
+      <td><%= order_item.item.amount %></td>
+      <td><%= ((@order_items.item_price*@order_items.amount)*1.10).round %></td>
 
 </tr>
 <!--cart_item_path(cart_item)-->

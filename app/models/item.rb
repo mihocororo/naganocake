@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_many :cart_items
   has_many :orders
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
   validates :name, presence: true
   # varidates :text, presence: true
   # varidates :status, inclusion: { in:[true,1]}

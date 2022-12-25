@@ -71,6 +71,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
     # patch 'cart_items' => 'public/customers#', as: 'withdrawal'
     get 'orders/new' => 'public/orders#new'
+    get 'orders/confirm' => 'public/orders#confirm'
     post 'orders/confirm' => 'public/orders#confirm'
     get 'orders/complete' => 'public/orders#complete'
     get 'orders/:id' => 'public/orders#show'

@@ -1,7 +1,7 @@
 class Admin::HomesController < ApplicationController
   # before_action :authenticate_admin!
   def top
-    # @orders = Order.find(params[:id])
+    @order = Order.page(params[:page])
     # @order_items = @order.order_items
     @orders = Order.all
   end
