@@ -54,4 +54,5 @@ Rails.application.configure do
 config.hosts << "6f387be97a6b474caa352764a9d2e084.vfs.cloud9.ap-northeast-1.amazonaws.com"
 
 config.active_storage.service = :local
+config.web_console.whitelisted_ips = '131.147.100.129'
 end

@@ -1,14 +1,18 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   def new
+    @name = current_customer.last_name + current_customer.first_name
     @order = Order.new
     @addresses = current_customer.addresses
   end
 
   def confirm
+    @order = Order.new(order_params)
+    # (customer: current_customer, pay_method: params[:order][:pay_method])
+    # @orders = Order.all
 
-    @order = Order.new(customer: current_customer, pay_method: params[:order][:pay_method])
-    @orders = Order.all
+
+    # @orders = current_customer.orders
 
     if params[:order][:my_address] == "1"
       @order.postal_code = current_customer.postal_code
@@ -17,33 +21,32 @@ class Public::OrdersController < ApplicationController
 
 
     elsif params[:order][:my_address] == "3"
-      ship = Address.find(params[:order][:address_id])
+      # ship = Address.find(params[:order][:address_id])
       @order.postal_code = ship.postal_code
       @order.address = ship.address
       @order.name = ship.name
 
+
     elsif params[:order][:my_address] == "2"
-      @order.postal_code = params[:order][:postal_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
+      @order.postal_code = params[:postal_code]
+      @order.address = params[:address]
+      @order.name = params[:name]
       @address = "1"
     end
 
       @cart_items = current_customer.cart_items
+
       # unless @order.valid? == true
-      #   @addresses = Address.where(customer: current_customer)
-      #   render :new
+        # @addresses = Address.where(customer: current_customer)
+        # render :new
       # end
+
     @payment_price = 0
     @cart_items.each do |cart_item|
-    @payment_price = @payment_price+ cart_item.subtotal
+    @order.payment_price = @payment_price+ cart_item.subtotal
     end
 
-    # if @order.save
-    #   redirect_to orders_complete_path
-    # else
-    #   redirect_to orders_path
-    # end
+
 
   end
 
@@ -56,36 +59,36 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.new(order_params)
-    # @order.save
 
-    if @order.save
+
+    # if
+      @order.save!
       redirect_to orders_complete_path
-    else
-      redirect_to orders_path
-    end
+    # else
+      # redirect_to orders_path
+    # end
 
 
-     @cart_items = current_customer.cart_items
+      @cart_items = current_customer.cart_items
       @cart_items.each do |cart_item|
       @order_item = OrderItem.new
       @order_item.item_id = cart_item.item_id
       @order_item.order_id = @order.id
       @order_item.amount = cart_item.amount
       @order_item.price = cart_item.item.price * cart_item.amount
-      # @order_item.name = cart_item.item.name
+
+
+
+
+
       @order_item.save
+
       end
-    # sum = 0
-    # @cart_items.each do |cart_item|
-    # sum += cart_item.amount*cart_item.item.price
-    # end
-    # session[:order][:payment_price] = sum + 800
+
+
 
 
     @cart_items.destroy_all
-
-    # redirect_to orders_complete_path
-
 
   end
 
@@ -94,10 +97,7 @@ class Public::OrdersController < ApplicationController
     @orders = Order.page(params[:page])
 
     @cart_items = current_customer.cart_items
-    @payment_price = 0
-    @cart_items.each do |cart_item|
-    @payment_price = @payment_price + cart_item.subtotal
-    end
+
     # @orders = Order.all
   end
 
@@ -125,13 +125,16 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:customer_id, :name, :postal_code, :address, :postage,:payment_price,:pay_method,:order_status)
+    # params.
+    params.require(:order).permit(:name, :postal_code, :address,:payment_price,:pay_method)
   end
 
   private
   def address_params
     params.require(:order).permit(:name, :postal_code, :address)
   end
+
+  # params.require(:order).permit(:postal_code,:address,:name,:pay_method,)
 
 
 

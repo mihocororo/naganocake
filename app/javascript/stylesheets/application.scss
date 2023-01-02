@@ -1,5 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
-@import '~@fontawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 .toptext{
   text-align:center;
@@ -8,6 +8,20 @@
 }
 
 .main-visual {
-  width: 50%;
-  height: 300px;
-  background-image: url(app/assets/images/sweets_cupcake.png);}
+  text-align:center;
+  display:table;
+  width:70%;
+  height:200px;
+  background-size: 100% 100%;
+  // background-size: auto;
+  background-image: url("../images/okashi2.png");
+}
+
+p{
+ display:table-cell;
+ vertical-align:middle;
+}
+
+.col2{
+  text-align:center;
+}

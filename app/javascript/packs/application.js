@@ -16,13 +16,27 @@
 // const imagePath = (name) => images(name, true)
 
 
-console.log('Hello World from Webpacker')
+// console.log('Hello World from Webpacker')
 
-import "channels"
+// import "channels"
+
+// import "jquery";
+// import "popper.js";
+// import "bootstrap";
+// import "../stylesheets/application"
+// import '@fontawesome/fontawesome-free/js/all'
+
+import Rails from "@rails/ujs"
+// import Turbolinks from "turbolinks"
+// import * as ActiveStorage from "@rails/activestorage"
+// import "channels"
 
 import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
-import '@fontawesome/fontawesome-free/js/all'
+import '@fortawesome/fontawesome-free/js/all'
 
+Rails.start()
+// Turbolinks.start()
+// ActiveStorage.start()
