@@ -49,17 +49,23 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #顧客
 
     # root to: 'public/homes#top'
+
+    get '/about' => 'public/homes#about', as: 'about'
+    get '/' => 'public/homes#top'
+
+
+    # resources :customers, only: [:edit, :show,:update]
     get '/cart_items' => 'public/cart_items#index'
     get '/customers/information/edit' => 'public/customers#edit' ,as: 'edit_customer'
     patch '/customers/information/edit' => 'public/customers#edit', as: 'update_customer'
     get '/customers/my_page' => 'public/customers#show'
-    get '/about' => 'public/homes#about', as: 'about'
-    get '/' => 'public/homes#top'
-    get '/items' => 'public/items#index'
     get	'/customers/sign_up' => 'public/registrations#new'
+    # devise_for :customers
     delete '/customers/sign_out' => 'public/sessions#destroy'
     get '/customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/withdraw' => 'public/customers#withdrawal', as: 'withdrawal'
+
+    get '/items' => 'public/items#index'
     get 'items/:id' => 'public/items#show'
 
 
@@ -69,9 +75,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'cart_items' => 'public/cart_items#index'
     post '/cart_items' => 'public/cart_items#create'
     patch '/cart_items/:id' => 'public/cart_items#update'
-    # as: 'update_CartItem'
-
-    # delete '/cart_items/:id' => 'public/cart_items#destroy',as: 'destroy_CartItem'
+    delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
     get '/cart_items/:id' => 'public/cart_items#index', as: 'cart_item'
 
     # get 'cart_items' => 'cart_items#new'
@@ -84,14 +88,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'orders/:id' => 'public/orders#show'
     get 'orders' => 'public/orders#index'
     post 'orders' => 'public/orders#create'
+
+
     resources :addresses, except: [:new, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
-    # resources :orders,only: [:create, :index, :show, :new] do
-    #   collection do
-    #     get 'complete'
-    #     post 'confirm'
-    #   end
-    # end
+    resources :orders,only: [:create, :index, :show, :new] do
+      collection do
+        get 'complete'
+        post 'confirm'
+      end
+    end
 namespace :public do
     resources :cart_items, only: [:index, :create, :update, :destroy,:destroy_all] do
       collection do
@@ -103,7 +109,7 @@ namespace :public do
     resources :items, only: [:index, :show]
     # get	'/customers/sign_up' => 'public/registrations#new'
 
-      # root to: 'public/homes#top'
+
 
       # get 'unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
       # patch 'withdraw' => 'customers#withdraw', as: 'withdraw'

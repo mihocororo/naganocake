@@ -34,17 +34,17 @@
       <th>商品名</th>
       <th>単価（税込）</th>
       <th>数量</th>
-      <th></th>
+
       <th></th>
       <th>小計</th>
 
     </tr>
 <% @order_items.each do |order_item| %>
 <tr>
-      <td><%= order_items.name %></td>
-      <td>￥<%= (order_items.item.price*1.10).round %></td>
-      <td><%= order_item.item.amount %></td>
-      <td><%= ((@order_items.item_price*@order_items.amount)*1.10).round %></td>
+      <td><%= order_item.item.name %></td>
+      <td>￥<%= (order_item.item.price*1.10).round %></td>
+      <td><%= order_item.amount %></td>
+      <td><%= ((order_item.price*order_item.amount)*1.10).round %></td>
 
 </tr>
 <!--cart_item_path(cart_item)-->

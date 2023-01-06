@@ -42,9 +42,14 @@ class Public::OrdersController < ApplicationController
       # end
 
     @payment_price = 0
-    @cart_items.each do |cart_item|
-    @order.payment_price = @payment_price+ cart_item.subtotal
-    end
+
+    # @cart_items.each do |cart_item|
+    # @payment_price += cart_item
+    # @order.payment_price = @payment_price+ cart_item.subtotal
+
+    # end
+
+
 
 
 
@@ -110,9 +115,12 @@ class Public::OrdersController < ApplicationController
 
 
     @payment_price = 0
-    @order_items.each do |order_item|
+    # @order_items.each do |order_item|
+    # @order.payment_price = @payment_price+ order_item.subtotal
+
     # @payment_price = @payment_price
-    end
+    # end
+
   end
 
   # def calculate(customer)

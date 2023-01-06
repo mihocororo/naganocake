@@ -1,7 +1,7 @@
 <body class="d-flex h-100 text-left text-black bg-light">
   <main class="px-3">
 
-<h4 class="mark mb-5"><%= @customer.first_name %>さんの会員情報編集</h4>
+<h4 class="mark mb-5"><%= @customer.last_name %>さんの会員情報編集</h4>
 <div class="container w-75 mt-2">
   <div class="row row-cols-2 mb-2">
 <div class="col">会員ID</div>
@@ -32,7 +32,7 @@
       </div>
     <div class="row row-cols-2 mb-2">
       <div class="col"><%= f.label :メールアドレス %></div>
-      <div class="col"><%= f.text_field :mail %></div>
+      <div class="col"><%= f.text_field :email %></div>
     </div>
 <div class="row row-cols-2 mb-2">
     <div class="col"><%= f.label :会員ステータス %></div>

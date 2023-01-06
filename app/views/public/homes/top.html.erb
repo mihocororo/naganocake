@@ -41,7 +41,7 @@
         <div class="col">
           <div class="card shadow-sm"><%= image_tag item.image, width: "100%", height: "200" %>
 
-            <div class="card-body"><%= item.name %>
+            <div class="card-body"><%= link_to item.name, "/items/#{item.id}" %>
               <p class="card-text">￥<%= item.price %></p>
 
             </div>

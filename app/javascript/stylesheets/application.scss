@@ -18,10 +18,34 @@
 }
 
 p{
- display:table-cell;
- vertical-align:middle;
+display:table-cell;
+vertical-align:middle;
 }
 
 .col2{
   text-align:center;
+}
+
+.btn2{
+  text-align:center;
+}
+
+.destroy{
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.nav-link active{
+  background-image: url("../images/okashi2.png");
+
+}
+
+.logo{
+  text-align:left;
+  text-color:gray;
+  -webkit-text-stroke-width:1px;
+  text-stroke-width:1px;
+  background-image: url("../images/logo2.png");
+  background-size:300px;
+  border-radius:10px;
 }

@@ -9,9 +9,9 @@ class Customer < ApplicationRecord
   has_many :addresses , dependent: :destroy
   has_many :orders , dependent: :destroy
 
-  # def active_for_authentication?
-  # super && (is_valid == true)
-  # end
+  def active_for_authentication?
+  super && (self.is_deleted == true)
+  end
 
   validates :last_name , presence: true
   validates :first_name , presence: true
