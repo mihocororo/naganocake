@@ -68,10 +68,18 @@
     <div>
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <!--<a class="nav-link active" aria-current="page" href="#">Home</a>-->
+        <% if admin_signed_in? %>
+        <% else %>
+        <a class="nav-link" href="/about">About</a>
+        <% end %>
         <a class="nav-link px-2" href="/admin/items">商品一覧</a>
+        <% if admin_signed_in? %>
         <a class="nav-link px-2" href="/admin/customers">会員一覧</a>
         <a class="nav-link px-2" href="/admin">注文履歴一覧</a>
         <a class="nav-link px-2" href="/admin/genres">ジャンル一覧</a>
+        <% else %>
+        <a class="nav-link" href="/customers/sign_up">新規登録</a>
+        <% end %>
         <% if admin_signed_in? %>
         <a class="nav-link px-2" href="/admin/sign_out">ログアウト</a>
         <% else %>

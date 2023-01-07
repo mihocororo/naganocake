@@ -8,7 +8,7 @@ class Public::SessionsController < Devise::SessionsController
     # redirect_to root_path
   #   super
   # end
-
+  
   # POST /resource/sign_in
   # def create
     # redirect_to '/'

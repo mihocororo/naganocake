@@ -10,19 +10,24 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   end
 
 
-  def after_sign_up_path_for(resource)
-    case resource
-    when Admin
-      admins_root_path
-    when Public
-      root_path
-    end
-  end
+  # def after_sign_up_path_for(resource)
+  #   case resource
+  #   when Admin
+  #     admins_root_path
+  #   when Public
+  #     # root_path
+  #     customers_my_page_path
+  #   end
+  # end
 
   # def after_sign_in_path_for(resource)
   #   case resource
   #   when Public
   #     admin_root_path
+  #     when Public
+  #     # root_path
+  #     customers_my_page_path
+
   #   end
   # end
 

@@ -47,7 +47,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   end
 
 #顧客
-
+    root to: 'public/customers#show'
     # root to: 'public/homes#top'
 
     get '/about' => 'public/homes#about', as: 'about'
@@ -99,6 +99,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       end
     end
 namespace :public do
+    root to: 'public/customers#show'
     resources :cart_items, only: [:index, :create, :update, :destroy,:destroy_all] do
       collection do
         delete 'destroy_all'

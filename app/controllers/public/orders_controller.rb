@@ -98,10 +98,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    # @orders = current_customer.orders
+    @orders = current_customer.orders
     @orders = Order.page(params[:page])
 
-    @cart_items = current_customer.cart_items
+    # @cart_items = current_customer.cart_items
 
     # @orders = Order.all
   end
