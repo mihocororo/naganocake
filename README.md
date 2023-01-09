@@ -1,5 +1,12 @@
 # README
-ながの　CAKE
+# ながのCAKE
+長野県にある洋菓子店「ながのCAKE」のECサイト
+
+送料一律　800円
+
+税率一律　10％
+
+支払方法　クレジットカード　または　銀行振込
 
 **アプリケーショントップ画面**URL　"https://6f387be97a6b474caa352764a9d2e084.vfs.cloud9.ap-northeast-1.amazonaws.com"
 
