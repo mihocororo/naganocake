@@ -41,6 +41,7 @@ class Public::CartItemsController < ApplicationController
     else
       redirect_to "/admin"
     end
+
   end
 
   private

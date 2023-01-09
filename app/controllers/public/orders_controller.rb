@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
     @name = current_customer.last_name + current_customer.first_name
     @order = Order.new
     @addresses = current_customer.addresses
+    
   end
 
   def confirm

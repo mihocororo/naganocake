@@ -27,14 +27,14 @@
     <%= f.radio_button :my_address, "2" %>
     <%= f.label :"新しいお届け先" %>
 
- <p><%= f.label :"郵便番号（ハイフンなし）",class:"col-sm-4 form-control-static" %>
-    <%= f.text_field :postal_code, class:"col-sm-3 form-control-static",placeholder:"0000000" %></p>
+ <p><%= f.label :"郵便番号（ハイフンなし）",class:"col-sm-15 form-control-static" %>
+    <%= f.text_field :postal_code, class:"col-sm-4 form-control-static",placeholder:"0000000" %></p></br>
 
- <p><%= f.label :"住所",class:"col-sm-4 form-control-static" %>
-    <%= f.text_field :address, class:"col-sm-6 form-control-static",placeholder:"東京都渋谷区代々木神園町0-0",:size =>"100" %></p>
+ <p><%= f.label :"住所",class:"col-sm-1 form-control-static" %>
+    <%= f.text_field :address, class:"col-sm-6 form-control-static",placeholder:"東京都渋谷区代々木神園町0-0",:size =>"100" %></p></br>
 
- <p><%= f.label :"宛名",class:"col-sm-4 form-control-static" %>
-    <%= f.text_field :name, class:"col-sm-3 form-control-static",placeholder:"令和道子" %></br></p>
+ <p><%= f.label :"宛名",class:"col-sm-3 form-control-static" %>
+    <%= f.text_field :name, class:"col-sm-6 form-control-static",placeholder:"令和道子" %></br></p>
 
 
 <div class="d-grid gap-2 col-3 mx-auto">
