@@ -132,5 +132,5 @@
 
 ・kaminari
 
-*IDE Cloud9
+* IDE Cloud9
 
