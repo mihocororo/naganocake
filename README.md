@@ -117,25 +117,20 @@
 
 ・’購入日時’をクリックすると、注文履歴詳細画面に移る
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## 環境
 
-* Ruby version
+* Ruby version 3.1.2
 
-* System dependencies
+* Rails version 6.1.7 
 
-* Configuration
+* SQlite3 1.4
 
-* Database creation
+* Gems
 
-* Database initialization
+・Bootstrap
 
-* How to run the test suite
+・kaminari
 
-* Services (job queues, cache servers, search engines, etc.)
+*IDE Cloud9
 
-* Deployment instructions
-
-* ...
