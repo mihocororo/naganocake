@@ -1,9 +1,9 @@
 # README
 ながの　CAKE
 
-*アプリケーショントップ画面*URL　"https://6f387be97a6b474caa352764a9d2e084.vfs.cloud9.ap-northeast-1.amazonaws.com"
+**アプリケーショントップ画面**URL　"https://6f387be97a6b474caa352764a9d2e084.vfs.cloud9.ap-northeast-1.amazonaws.com"
 
-##　アプリケーション操作方法
+# アプリケーション操作方法
 
 ###　・顧客側
 
