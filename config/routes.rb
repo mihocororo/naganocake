@@ -57,7 +57,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     # resources :customers, only: [:edit, :show,:update]
     get '/cart_items' => 'public/cart_items#index'
     get '/customers/information/edit' => 'public/customers#edit' ,as: 'edit_customer'
-    patch '/customers/information/edit' => 'public/customers#edit', as: 'update_customer'
+    patch '/customers/information/edit' => 'public/customers#update', as: 'update_customer'
     get '/customers/my_page' => 'public/customers#show'
     get	'/customers/sign_up' => 'public/registrations#new'
     # devise_for :customers
